@@ -1,20 +1,20 @@
 # Challenge_Bluetooth
 
-This challenge generates a key depending on the different bluetooth devices nearby. This challenge complements the [parental control blueetooth challenge](https://github.com/SecureworldProject/Challenge_Bluetooth).
+Es challenge genera una clave en función de los distintos dispositivos bluetooth cercanos. Este challenge complementa el [parental control blueetooth challenge](https://github.com/SecureworldProject/Challenge_Bluetooth).
 
-It uses bluetooth, in particular `pybluez` library.
+Usa bluetooth, en particular la librería `pybluez`.
 
-## Install pybluez in Windows 10
+## Instalar la librería pybluez en Windows 10
 
-First, install [Windows SDK](https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/)
+Primero instala [Windows SDK](https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/)
 
-Second, download and install windows 10 [build tools](https://www.microsoft.com/es-ES/download/confirmation.aspx?id=48159)
+Segundo, descarga e instala las builds de Windows 10 [build tools](https://www.microsoft.com/es-ES/download/confirmation.aspx?id=48159)
 
-Third, Clone [pybluez repo](https://github.com/pybluez/pybluez)
+Tercer, clona [pybluez](https://github.com/pybluez/pybluez)
 
-Fourth, run as administrator, within the repo: `python setup.py install`
+Cuarto, como administrador, dentro del repositorio: `python setup.py install`
 
-ejemplo de configuracion json
+Ejemplo de configuracion json
 ```json
 {
 	"FileName": "bluetooth_devices_challenge.dll",
@@ -26,3 +26,9 @@ ejemplo de configuracion json
 	"Requirements": "none"
 }
 ```
+
+## Funcionamiento
+
+Todas las funciones y la lógica del challenge se encuentran en el fichero bluetooth_devices_challenge.py, el cual es un programa en python que contiene toda la lógica del challenge. La función principal dentro del fichero que gestiona toda la lógica del challenge es bluetooth.discover_devices(), la cual devuelve la lista de dispositivos que se encuentran dentro del rango del ordenador y tienen el Bluetooth activado. Asimismo, toda la lógica del challenge se ejecuta dentro de la función executeChallenge( ).
+
+Primero se llama a bluetooth.discover_devices(), mediante la cual se obtiene la lista de dispositivos cercanos que tienen el Bluetooth activado. A la hora de llamar al método, es importante especificar como parámetro de la función: lookup_names=True, ya que esto hace que se devuelvan los nombres de los dispositivos. En base a esa lista se genera un array que contiene todos los dispositivos. Dicho array se concatena y a partir de la concatenación se genera una clave. Por el contrario, si no hay ningún dispositivo con el Bluetooth activo dentro del rango, la clave será '0000'.
