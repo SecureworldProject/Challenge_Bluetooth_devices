@@ -14,3 +14,15 @@ Third, Clone [pybluez repo](https://github.com/pybluez/pybluez)
 
 Fourth, run as administrator, within the repo: `python setup.py install`
 
+ejemplo de configuracion json
+```json
+{
+	"FileName": "bluetooth_devices_challenge.dll",
+	"Description": "Challenge that generates a key using a list of bluetooth devices as input",
+	"Props": {
+		"validity_time": 3600,
+		"refresh_time": 3000
+	},
+	"Requirements": "none"
+}
+```
